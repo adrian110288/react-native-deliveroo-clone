@@ -1,8 +1,9 @@
 import {ScrollView, Text, View} from 'react-native';
 import {ArrowRightIcon} from "react-native-heroicons/outline";
 import RestaurantCard from "./RestaurantCard";
+import {urlFor} from '../sanity'
 
-const FeaturedRow = ({id, title, description}) => {
+const FeaturedRow = ({id, title, description, restaurants}) => {
     return (
         <View>
             <View className="flex-row mt-4 items-center px-4">
@@ -21,51 +22,21 @@ const FeaturedRow = ({id, title, description}) => {
                     paddingHorizontal: 15
                 }}>
 
+              { restaurants?.map((restaurant) => (
                 <RestaurantCard
-                    id={1234}
-                    imgUrl="https://links.papareact.com/wru"
-                    title="Yo! Sushi"
-                    rating={4.5}
-                    genre="Japanese"
-                    address="123 Main St"
-                    shortDescription="This is test description"
-                    dishes={[]}
-                    long={20}
-                    lat={0} />
-                <RestaurantCard
-                    id={1234}
-                    imgUrl="https://links.papareact.com/wru"
-                    title="Yo! Sushi"
-                    rating={4.5}
-                    genre="Japanese"
-                    address="123 Main St"
-                    shortDescription="This is test description"
-                    dishes={[]}
-                    long={20}
-                    lat={0} />
-                <RestaurantCard
-                    id={1234}
-                    imgUrl="https://links.papareact.com/wru"
-                    title="Yo! Sushi"
-                    rating={4.5}
-                    genre="Japanese"
-                    address="123 Main St"
-                    shortDescription="This is test description"
-                    dishes={[]}
-                    long={20}
-                    lat={0} />
-                <RestaurantCard
-                    id={1234}
-                    imgUrl="https://links.papareact.com/wru"
-                    title="Yo! Sushi"
-                    rating={4.5}
-                    genre="Japanese"
-                    address="123 Main St"
-                    shortDescription="This is test description"
-                    dishes={[]}
-                    long={20}
-                    lat={0} />
+                  key={restaurant._id}
+                  id={restaurant._id}
+                  imgUrl={urlFor(restaurant.image).url()}
+                  title={restaurant.name}
+                  rating={restaurant.rating}
+                  genre="£££££"
+                  address={restaurant.address}
+                  shortDescription={restaurant.description}
+                  dishes={[]}
+                  long={restaurant.long}
+                  lat={restaurant.lat} />
 
+              ))}
 
             </ScrollView>
 
